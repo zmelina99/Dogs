@@ -4,12 +4,13 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
     const Temperament = sequelize.define('temperament', {
         id: {
-          type: DataTypes.UUID, 
+          type: DataTypes.INTEGER, 
           primaryKey: true,
+          autoIncrement: true
         },
         name: {
           type: DataTypes.STRING,
           allowNull: false 
         } 
       });
-    };
+    }

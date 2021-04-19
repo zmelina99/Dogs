@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
   // defino el modelo
   const Dog = sequelize.define('dog', {
      id: {
-      type: DataTypes.UUID, 
+      type: DataTypes.STRING, 
       primaryKey: true,
     },
     name: {
@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false 
     },
-    yearsOfLife:{
+    life_span:{
       type: DataTypes.INTEGER 
     }
 

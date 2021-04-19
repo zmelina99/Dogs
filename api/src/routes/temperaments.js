@@ -1,7 +1,7 @@
 const {Router} = require('express')
 const router = Router()
+const {getTemp} = require('../Controllers/temperaments')
 
-router.get('/', (req, res) => {
-    res.send('hola, temperaments')
-})
+router.get('/', getTemp)
+
 module.exports = router;

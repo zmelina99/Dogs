@@ -1,10 +1,10 @@
 const {Router} = require('express')
 const router = Router()
-const {addDog, getDogs, getDogsQuery, getDogsParams} = require('../Controllers/dogs')
+const {getDogs, getDogsParams} = require('../Controllers/dogs')
+const {addDog} = require('../Controllers/dog')
 
 router.get('/', getDogs)
-router.get('/dogs/?name={name}', getDogsQuery)
-router.get('/dogs/:dogId', getDogsParams)
+router.get('/:dogId', getDogsParams) 
 router.post('/dog', addDog);
 
 module.exports = router;

@@ -1,8 +1,17 @@
 const {Dog} = require('../db')
 const axios = require('axios')
 const {BASE_URL, DOG_URL, API_KEY} = require('../../constants')
+const { Sequelize } = require('sequelize');
+const Op = Sequelize.Op;
+const operatorsAliases = {
+  $like: Op.like,
+  $not: Op.not
+}
 
+//Ok, trae  todos los perros  
+//CREAR PERRO EN MI BASE DE DATOS  
 function getDogs(req, res, next){
+    if(Object.keys(req.query).length === 0){ //BUSCAR EN CP3
     const dogApi = axios.get(BASE_URL);
     const myDogs = Dog.findAll();
     Promise.all([dogApi, myDogs])
@@ -10,9 +19,26 @@ function getDogs(req, res, next){
         let [dogApiResponse, myDogsResponse] = response
         let all = myDogsResponse.concat(dogApiResponse.data)
         
-            return res.send (all)
+            return res.json(all)
     })
     .catch((err) => next(err))
+    }
+    else {
+    const {name} = req.query
+    const dogApi = axios.get( `https://api.thedogapi.com/v1/breeds/search?q=${name}`);
+    const myDogs =  Dog.findAll({where: { name: { [Op.like]: `%${name}%` } }
+    });
+    Promise.all([dogApi, myDogs])
+        .then((response) => {
+        let [dogApiResponse, myDogsResponse] = response
+        let all = myDogsResponse.concat(dogApiResponse.data)
+        if (all.length === 0){
+            return res.status(404).send("Oops, we haven't found any breeds matching that name")
+        }
+            return res.json(all)
+    })
+    .catch((err) => next(err))
+    }
 } //MAL
 /* function getDogs(req, res, next){
     const dogApi = axios.get(BASE_URL + DOG_URL);
@@ -27,10 +53,11 @@ function getDogs(req, res, next){
     .catch((err) => next(err))
 }  */
 
-function getDogsQuery(req, res, next){
-    const dogApi = axios.get(BASE_URL + DOG_URL);
-    const myDogs = Dog.findAll();
+/* function getDogsQuery(req, res, next){
+    console.log('bitches')
     const {name} = req.query.name
+    const dogApi = axios.get( `https://api.thedogapi.com/v1/breeds/search?q=${name}`);
+    const myDogs = Dog.findAll(); //cambiar esto
     Promise.all([dogApi, myDogs])
         .then((response) => {
         let [dogApiResponse, myDogsResponse] = response
@@ -42,43 +69,41 @@ function getDogsQuery(req, res, next){
             return res.send (match)
     })
     .catch((err) => next(err))
-} 
+} */ 
+//EL AXIOS LO HAGO A LA OTRA URL Y LE PASO {NAME}
+//EN VEZ DE FIND ALL, BUSCO EN SEQUELIZE UN FILTER
+//
 
 function getDogsParams(req, res, next){
-    const dogApi = axios.get(BASE_URL + DOG_URL);
-    const myDogs = Dog.findAll();
     const {dogId} = req.params
+    const dogApi = axios.get(BASE_URL);
+    const myDogs = Dog.findAll();
     Promise.all([dogApi, myDogs])
         .then((response) => {
         let [dogApiResponse, myDogsResponse] = response
         let all = myDogsResponse.concat(dogApiResponse.data)
-        match = all.filter(breed => breed.id === dogId); 
+        match = all.filter(breed => {
+           return breed.id == dogId}); 
             return res.send (match)
     })
     .catch((err) => next(err))
 } 
 
 
-async function addDog(req, res, next){
-    const dog = req.body;
-    if(!dog){
-        return res.send('Oops, the form is empty')
-    }
-    try {
-        const createdDog = await  Dog.create(dog)
-        return res.send(createdDog)
-    }
-    catch(error){
-        next(error)
-    } 
-}
-
-
-
 
 module.exports = {
-    addDog, 
     getDogs,
-    getDogsQuery,
     getDogsParams
 }
+/* //paginacion sequelize Limits and Pagination
+The limit and offset options allow you to work with limiting / pagination:
+
+// Fetch 10 instances/rows
+Project.findAll({ limit: 10 });
+
+// Skip 8 instances/rows
+Project.findAll({ offset: 8 });
+
+// Skip 5 instances and fetch the 5 after that
+Project.findAll({ offset: 5, limit: 5 });
+Usually these are used alongside the order option. */
