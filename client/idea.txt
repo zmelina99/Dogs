@@ -1,0 +1,4 @@
+Procedimiento que pense: 
+1. Armar Card,  cards y mostrarlas en dogs 
+    No se como hacerlo con redux, hice una action que trae los perros y un reducer pero no se como traerlo al componente dogs
+2.

@@ -1,0 +1,48 @@
+.background{
+    overflow-y: hidden ! important;
+    overflow-x: hidden ! important;
+    background-color: #f8f8f8;
+    background-image: url('https://cdn.pixabay.com/photo/2019/04/10/23/51/dog-4118585__340.jpg');
+    background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height:100%
+      } 
+
+h1{
+    font-family: 'Merienda', cursive;
+    font-size: 100px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 120px
+}
+
+.enter{
+    background-color: rgb(241, 144, 160);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end !important;
+    margin-top: 10px;
+    margin-left: 980px
+}
+#text{
+    font-family: 'Merienda', cursive;
+    font-size: 30px;
+    color: white !important;
+    text-decoration: none;
+}
+text:link {
+    text-decoration: none;
+  }
+h2{
+    font-family: 'Merienda', cursive;
+    font-size: 20px;
+    color: white !important;
+    text-decoration: none;
+    margin-left: 30px;
+    margin-top: 300px;
+
+}
