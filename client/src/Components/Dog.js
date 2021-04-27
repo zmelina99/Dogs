@@ -11,18 +11,35 @@ export default function Dog(props) {
      dispatch(getDogDetail(props.match.match.params.id))
     }, []); 
     const info = useSelector( (state) => state.dogDetail[0])
+    
+    function manageWeight(info){
+    if(info?.weight.metric){
+        return info?.weight.metric
+    }
+    else{
+        return info?.weight
+    }
+}
+function manageHeight(info){
+    if(info?.height.metric){
+        return info?.height.metric
+    }
+    else{
+        return info?.height
+    }
+}
+
     return (
-       
         <div className="info">
                 <div className="container">
-                      <h2>{info?.name}</h2>
+                      
                     <div className="info">
-                        //poner loading 
+                        <div>{info?.name}</div>
                         <div>Temperament: {info?.temperament}</div>
-                        <div>Height: {info?.height.metric}cm</div>
-                        <div>Weight: {info?.weight.metric}kg</div>
+                        <div>Height: {manageHeight(info)}cm</div>
+                        <div>Weight: {manageWeight(info)}kg</div>
                         <div>Life span: {info?.life_span}</div> 
-                        <div>{info?.image.url}</div>
+                        <img src={info?.image.url}/>
                     </div> 
             </div>
             </div>

@@ -1,32 +1,39 @@
 import React from 'react';
 //import './Card.css';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import './Card.css'
 
 
 export default function Card ({name, image, temperament, id}) {
+ 
+  function manageImage(id){
+    if (image){
+      return `https://cdn2.thedogapi.com/images/${image.id}.jpg`
+    }
+    else {
+      return 'This dog does not havean image'
+    }
+
+  }
     return (
       <div className="card">
-        <div className="card-body">
-          <Link to={`/dogs/${id}`}>
+      
+          <NavLink to={`/dogs/${id}`}>
             <h5 className="card-title">{name}</h5>
-          </Link>
+          </NavLink>
+          <div className="card-body">
+          <div className="image">
+              <img className="" src={manageImage(id)} width="300" height="300" alt="" /> 
+            </div> 
+            
 
-            </div>
-            <div className="">
+            
+            <div className="temperaments">
               <p>Temperament: {temperament}</p>
             </div>
-
-           <div className="image">
-              <img className="" src={`https://cdn2.thedogapi.com/images/${image.id}.jpg`} width="150" height="150" alt="" /> 
-            </div>  
+            </div>
         </div>
       
     );
 };
 
-/* En este componente tengo que juntat toda la info que quiero que se vea en mi card:
-Nombre
-Temperamento
-Imagen  
-No se como mostrar la imagen */

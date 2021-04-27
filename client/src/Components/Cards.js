@@ -22,6 +22,24 @@ export default function Cards({dogs, temperaments}) {
       e.preventDefault()
       setInput(e.target.value)
    }
+  
+   function manageWeight(a,b){
+    if (b){
+    if(b.weight.metric){
+        return b.weight.metric
+    }
+    else {
+        return b.weight
+    }}
+    else{
+    if(a.weight.metric){
+      return a.weight.metric
+  }
+  else {
+      return a.weight
+  }
+}
+   }
 
 /*    ------------------------------
             Pagination */
@@ -53,15 +71,28 @@ const handleFilters= (filters, category) =>{
 
   return (
     <div>
-       <select><option>Select temperaments</option>{temperament.map((x) => <option key={x.id}>{x.name}</option>)}</select>
-    <div>
-        <div>
-        <input
+      <form action="">
+  <input 
+  type="search"
+  value={input}
+  onChange={handleChange}
+  />
+  <i class="fa fa-search"></i>
+</form>
+       {/*  <div className = 'searchDiv'>
+  <input className= 'search'
   type="text"
   placeholder="Search"
   value={input}
   onChange={handleChange}
 />
+</div> */}
+    <div className= 'divtemperaments'>
+       <select className= 'temperaments'><option>Select temperaments</option>{temperament.map((x) => <option key={x.id}>{x.name}</option>)}</select>
+       </div>
+    <div>
+  <div>
+  
    
     {/* <Select
     defaultValue={[colourOptions[2], colourOptions[3]]}
@@ -72,27 +103,29 @@ const handleFilters= (filters, category) =>{
     classNamePrefix="select"
   />  --> Para seleccionar multiples */}
     
-
+<div className ='buttons'> 
+<span id= 'sortby'> Sort by</span>
 {/*  ------------------------------
             Sorting alphabetically  */}
-    <button onClick={() =>  {
+    <button className = 'sorting' onClick={() =>  {
        dog.sort((a, b) => a.name.localeCompare(b.name))
        setOrder([...dog])
     }}>A-Z</button>
-    <button onClick={() => {dog.sort((a, b) => a.name.localeCompare(b.name)).reverse()
+    <button className = 'sorting' onClick={() => {dog.sort((a, b) => a.name.localeCompare(b.name)).reverse()
       setOrder([...dog])
      }}>Z-A</button>
 
 
 {/*  ------------------------------
             Sorting by weight  */}
-      <button onClick={() =>  {
-       dog.sort((a, b) => parseFloat(b.weight.metric) - parseFloat(a.weight.metric));
+      <button className = 'sorting' onClick={() =>  {
+       dog.sort((a, b) => parseFloat(manageWeight(b)) - parseFloat(manageWeight(a)));
        setOrder([...dog])
     }}>Descending weight</button>
-    <button onClick={() => {dog.sort((a, b) => parseFloat(a.weight.metric) - parseFloat(b.weight.metric));
+    <button className = 'sorting' onClick={() => {dog.sort((a, b) => parseFloat(manageWeight(a)) - parseFloat(manageWeight(b)));
  setOrder([...dog])
      }}>Ascending weight</button> 
+    </div>
     </div>
   
  {/*  <Checkbox
