@@ -22,8 +22,10 @@ module.exports = (sequelize) => {
     },
     life_span:{
       type: DataTypes.INTEGER 
-    }
-
+    },
+   /*  image:{
+      type: DataTypes.URL 
+    } */
   }); 
 
 };

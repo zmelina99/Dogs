@@ -32,7 +32,7 @@ conn.sync({ force: false }).then((next) => {
    const dogApi = axios.get(BASE_URL)
        .then((response) => {
        let dogApiResponse = response 
-       let all = dogApiResponse.data
+       let all = dogApiResponse.data  
       let set = new Set()
       all.map( breed => {
         if (breed.temperament){

@@ -1,0 +1,44 @@
+.labels{
+    font-family:  'Montserrat', sans-serif;
+}
+.allLabels{
+    margin-top: 80px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: solid;
+    padding: 20px;
+    border-color: rgb(229, 143, 157);
+    width: 500px;
+    height: 400px;
+    margin-left: 400px;
+}
+.allInputs{
+font-family: 'Montserrat', sans-serif;
+color: grey;
+background-color:white;
+border-radius: 15px;
+font-size: 30px;
+margin-top:10px; 
+text-decoration: none;
+padding: 5px;
+border-color: black;
+width: 200px;
+height: 20px;
+}
+
+.addtemp{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.addtemperaments{
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+}
+#title{
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+    list-style-type: none;
+}

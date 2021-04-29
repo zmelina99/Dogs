@@ -13,10 +13,20 @@ body{
     /* background: #eacda3;  /* 
     background: -webkit-linear-gradient(to right, #d6ae7b, #eacda3);  
     background: linear-gradient(to right, #d6ae7b, #eacda3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ 
- 
-    
-    form{
+    .all{
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-around;
+    }
+    .cards{
+        display: flex;
+        flex-direction: column;
+        align-items: center;    
         margin-top: 0px;
+    }
+    
+    #searchbar{
+        margin-top: 50px;
         position: relative;
         top: 50%;
         left: 50%;
@@ -27,11 +37,11 @@ body{
         background: white;
         box-sizing: border-box;
         border-radius: 25px;
-        border: 4px solid black;
+        border: 2px solid rgb(229, 143, 157);
         padding: 5px;
     }
     
-    input{
+    .barra{
         position: absolute;
         top: 0;
         left: 0;
@@ -61,16 +71,16 @@ body{
         transition: all 1s;
     }
     
-    form:hover{
+    #searchbar:hover{
         width: 400px;
         cursor: pointer;
     }
     
-    form:hover input{
+    #searchbar:hover input{
         display: block;
     }
     
-    form:hover .fa{
+    #searchbar:hover .fa{
         background: black;
         color: white;
     }
@@ -89,10 +99,10 @@ body{
     justify-content: center;
 }
 
-.buttons{
+#buttons{
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
     margin-top: 0px;
     margin-left: 20px;
     padding: 15px
@@ -119,7 +129,7 @@ body{
     display: flex;
     justify-content: flex-end;
 }
-.temperaments{
+.temperamentsfil{
     font-family: 'Montserrat', sans-serif;
     color: grey;
     background-color:white;
@@ -129,6 +139,6 @@ body{
     text-decoration: none;
     padding: 5px;
     border-color: black;
-    width: 350px;
+    width: 370px;
     margin-right: 50px;
 }
