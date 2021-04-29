@@ -22,19 +22,28 @@ export default function Cards({ dogs, temperaments, name }) {
 
   /*    ------------------------------
             Breed filter */
-  const handleChange = (e) => {
+  const handleChange =  (e) => {
     e.preventDefault();
-    setInput(old => old=e.target.value);
-    setFDogs([...dog]);
-  
+    setInput(e.target.value);
+    //setFDogs([...dog]);
+    console.log(input)
+    //setTimeout(control(), 5000)
+    control(e.target.value)
+    console.log(input)
+  };
 
-  if (input.length !== 0) {
-    let filtered = fDogs.filter((d) => {
-      return d.name.toLowerCase().includes(input.toLowerCase());
+function control(word){
+
+ if (word.length !== 0) {
+    let filtered = dog.filter((d) => {
+      return d.name.toLowerCase().includes(word.toLowerCase());
     });
     setFDogs([...filtered])
   }
-  };
+  else {
+    setFDogs([...dog])
+  }
+};
 
   function myDogs(){
     let filtered = []
