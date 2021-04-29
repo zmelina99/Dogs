@@ -4,7 +4,6 @@ import ReactPaginate from "react-paginate";
 import "./Cards.css";
 import Select from "react-select";
 import Card from "./Card.js";
-import Temperaments from "./TempFilter";
 //import Checkbox from './Checkbox.js'
 
 export default function Cards({ dogs, temperaments, name }) {
@@ -29,20 +28,45 @@ export default function Cards({ dogs, temperaments, name }) {
     setSelectedTemp(e.target.value);
     filter(e.target.value)
   };
-function filter(w){
-  let filtered  = dog.filter((d) =>  {
-  if(d.temperaments){
-    console.log(d.temperaments)
-    for (let i = 0; i <= d.temperaments.length; i++){
-      return d.temperaments[i].name.includes(w)
-  }
 
-}
+
+  function filter(w){
+    let filtered  = dog.filter((d) =>  {
+    if(d.temperaments){
+
+let names = d.temperaments.map(t => t.name)
+        return names.includes(w)
+    }
+    
+   else if(d.temperament !== undefined){
+    return d.temperament.includes(w)
+   }
+  })
+    setFDogs([...filtered]);
+  }
+ /*  let filtered = []
+  let filteredMine  = dog.map((d) =>  {
+  if(d.temperaments){
+    //console.log(d.temperaments)
+ // array.forEach((item) => console.log(item))
+  d.temperaments.forEach((t) => {
+    console.log('t', t.name)
+      if( t.name.includes(w)){
+        filteredMine.push(t.name)
+      }})
+  }})
+  let filteredApi  = dog.map((d) =>  {
+    if(d.temperament !== undefined)
+        if( d.name.includes(w)){
+          filteredApi.push(d.name)
+        }})
+    
   
- else if(d.temperament !== undefined)
-  return d.temperament.includes(w)})
-  setFDogs([...filtered]);
-}
+
+  filtered = filteredMine.concat(filteredApi)
+  setFDogs([...filtered]); */
+
+
 
   /*    ------------------------------
             Breed filter */
@@ -127,18 +151,18 @@ function filter(w){
 
   return (
     <div>
-      <div id="myVsApi">
-        <span id="sortby"> Sort by</span>
+       <div id="myVsApi">
+        
         <button className="sorting" onClick={myDogs}>
-          {" "}
+    
           Show my dogs
         </button>
         <button className="sorting" onClick={apiDogs}>
-          {" "}
+      
           Show api dogs
         </button>
         <button className="sorting" onClick={showAll}>
-          {" "}
+  
           Show all dogs
         </button>
       </div>
@@ -151,16 +175,15 @@ function filter(w){
           onChange={handleChange}
         />
         <i class="fa fa-search"></i>
-      </form>
+      </form> 
+
+
+
       <div className="all">
-        <div id="buttons">
-
-
-
-
-          <div className="addtemp">
+        
+          <div className="temperamentsfil">
             <select
-              className="addtemperaments"
+              className="temperamentsfil"
               name="temperaments"
               id="temperaments"
               onChange={handleChangeT}
@@ -180,7 +203,7 @@ function filter(w){
                 </li>
               ))}
             </ul> */}
-            <button onClick={filter}>Filter</button>
+           
           </div>
 
           {/*  <div className="divtemperaments">
@@ -195,12 +218,15 @@ function filter(w){
             </select>
             
           </div> */}
-        </div>
+        
 
         {fDogs.length > 0 && <div className="cards">{displayDogs}</div>}
 
         {/*  ------------------------------
             Sorting alphabetically  */}
+        <div id="buttons">
+        <span id="sortby"> Sort by</span>
+       
         <button
           className="sorting"
           onClick={() => {
@@ -246,6 +272,8 @@ function filter(w){
         >
           Ascending weight
         </button>
+        </div>
+  
       </div>
 
       {/*  ------------------------------

@@ -1,3 +1,8 @@
+ #cardContainer{
+   display: flex;
+   justify-content: center;
+margin-top: 80px;
+ }
  .info {
     margin: 20px;
     width: 500px;
@@ -23,9 +28,13 @@
    
     margin-top: 0px !important;
     padding-top: 0px !important;
+    padding: 10px;
     font-family:  'Montserrat', sans-serif;
     color: black;
-    font-size: 10px;
+    font-size: 20px;
     text-decoration: none;
   }
- 
+ #image{
+   padding:10px;
+   margin-left: 80px;
+ }

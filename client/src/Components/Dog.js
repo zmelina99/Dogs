@@ -29,6 +29,7 @@ export default function Dog(props) {
   }
 
   return (
+    <div id= 'cardContainer'>
     <div className="info">
       <div className="card-title">{info?.name}</div>
       <div className="details">
@@ -36,9 +37,10 @@ export default function Dog(props) {
         <div>Height: {manageHeight(info)}cm</div>
         <div>Weight: {manageWeight(info)}kg</div>
         <div>Life span: {info?.life_span}</div>
-        <img src={info?.image?.url || "https://www.creativefabrica.com/wp-content/uploads/2020/05/29/Dog-dxf-svg-png-eps-Cut-file-Graphics-4226994-1-1-580x386.jpg"} width="300" height="200" alt="" /> 
+        <img id='image' src={info?.image?.url || "https://www.creativefabrica.com/wp-content/uploads/2020/05/29/Dog-dxf-svg-png-eps-Cut-file-Graphics-4226994-1-1-580x386.jpg"} width="300" height="200" alt="" /> 
         {/*  La image rompe pero si la comento, trae  los datos, excepto los temperamentos */}
       </div>
+    </div>
     </div>
   );
 }

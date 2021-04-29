@@ -9,7 +9,6 @@ export default function Card ({name, image, temperaments, id}) {
 
     return (
       <div className="card">
-      
           <NavLink to={`/dogs/${id}`}>
             <h5 className="card-title" >{name}</h5>
           </NavLink>

@@ -16,8 +16,8 @@ body{
     .all{
         display: flex;
         flex-direction: row-reverse;
-        justify-content: space-around;
-    }
+        justify-content: space-evenly;
+    } 
     .cards{
         display: flex;
         flex-direction: column;
@@ -98,6 +98,21 @@ body{
     display: flex;
     justify-content: center;
 }
+#myVsApi{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px;
+    margin-right: 10px;
+}
+/* #buttonstop{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 0px;
+    margin-left: 20px;
+    padding: 15px
+} */
 
 #buttons{
     display: flex;
@@ -106,7 +121,7 @@ body{
     margin-top: 0px;
     margin-left: 20px;
     padding: 15px
-}
+} 
 .sorting{
     font-family: 'Montserrat', sans-serif;
     color: grey;
@@ -116,6 +131,7 @@ body{
     margin-top:10px; 
     text-decoration: none;
     padding: 5px;
+    border: solid 1px;
     border-color: black;
     width: 300px;
 }
@@ -132,7 +148,6 @@ body{
 .temperamentsfil{
     font-family: 'Montserrat', sans-serif;
     color: grey;
-    background-color:white;
     border-radius: 15px;
     font-size: 30px;
     margin-top:20px; 
@@ -141,4 +156,8 @@ body{
     border-color: black;
     width: 370px;
     margin-right: 50px;
+}
+.nBottons{
+    display: flex;
+    flex-direction: row;
 }
