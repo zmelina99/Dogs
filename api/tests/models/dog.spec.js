@@ -14,9 +14,23 @@ describe('Dog model', () => {
           .then(() => done(new Error('It requires a valid name')))
           .catch(() => done());
       });
-      it('should work when its a valid name', () => {
-        Dog.create({ name: 'Pug' });
+      describe('weight', () => {
+        it('should throw an error if weight is null', (done) => {
+          Dog.create({name: 'pug'})
+            .then(() => done(new Error('It requires a valid weight')))
+            .catch(() => done());
+        });
+        describe('height', () => {
+          it('should throw an error if height is null', (done) => {
+            Dog.create({name: 'pug',  weight:200})
+              .then(() => done(new Error('It requires a valid height')))
+              .catch(() => done());
+          });
+      it('should work when its a valid name, weight and height', () => {
+        Dog.create({ name: 'Pug', weight: 300, height:200 });
       });
     });
   });
 });
+}) 
+})
