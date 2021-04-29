@@ -24,7 +24,7 @@ const axios = require('axios');
 const {Dog, Temperament} =  require('./src/db.js');;
 
 // Syncing all the models at once.
-conn.sync({ force: false }).then((next) => {
+conn.sync({ force: true }).then((next) => {
 
  console.log('database connection OK')
  server.listen(3001, () => {
