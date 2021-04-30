@@ -23,7 +23,7 @@ function App() {
      <React.Fragment>
           
           <Route exact path="/" component={LandingPage} />
-          <NavBar />
+        
           <Route exact path="/home" component={Home} />
           <Route exact path="/dogs/:id" render={(match)=> <Dog match= {match}/>} />
           <Route exact path= '/createDog' component={CreateDog}/>

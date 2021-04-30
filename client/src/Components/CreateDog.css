@@ -7,7 +7,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: solid;
+    border: double;
     padding: 20px;
     border-color: rgb(229, 143, 157);
     width: 500px;
@@ -17,6 +17,7 @@
 .allInputs{
 font-family: 'Montserrat', sans-serif;
 color: grey;
+font-weight: 500;
 background-color:white;
 border-radius: 15px;
 font-size: 30px;
@@ -35,10 +36,39 @@ height: 20px;
 }
 .addtemperaments{
     font-family: 'Montserrat', sans-serif;
-    color: black;
+    color: grey;
+    border-radius: 15px;
+    font-size: 15px;
+    margin-top:20px; 
+    text-decoration: none;
+    padding: 5px;
+    border-color: black;
+    width: 100;
+    margin-right: 30px;
 }
 #title{
     font-family: 'Montserrat', sans-serif;
     color: black;
     list-style-type: none;
+}
+.addButton{
+    font-family: 'Montserrat', sans-serif;
+    color: grey;
+    background-color:white;
+    border-radius: 15px;
+    font-size: 30px;
+    margin-top:10px; 
+    text-decoration: none;
+    padding: 5px;
+    border: solid 1px;
+    border-color: black;
+    width: 300px;
+}
+
+.addButton:hover {background-color: blanchedalmond;}
+
+.addButton:active {
+    background-color: blanchedalmond;
+      box-shadow: 0 3px rgb(180, 178, 178);
+  transform: translateY(4px);
 }

@@ -10,7 +10,7 @@ export default function Card ({name, image, temperaments, id}) {
     return (
       <div className="card">
           <NavLink to={`/dogs/${id}`}>
-            <h5 className="card-title" >{name}</h5>
+            <h5 className="card-title">{name}</h5>
           </NavLink>
           <div className="card-body">
           <div className="image">
@@ -18,12 +18,11 @@ export default function Card ({name, image, temperaments, id}) {
             </div> 
 
             {temperaments && <div className="temperaments">
-             <p>Temperament: {typeof  temperaments === 'string' ? temperaments : temperaments.map(d => d.name, )}</p>  
+             <p>Temperament: {typeof  temperaments === 'string' ? temperaments : temperaments.map(d => <li>{d.name},</li>)}</p>  
             </div>} {/*  ¿existe temperaments? Si existe, se renderea, sino no */}
             </div>
         </div>
       
-    );
+    ); 
 };
 
-//creo que es porque estoy mapeando los perros de la api y no los mios 

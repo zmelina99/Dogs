@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { getDogDetail } from "../Actions";
 import { useSelector } from "react-redux";
 import "./Dog.css";
+import NavBar from "./NavBar";
 
 export default function Dog(props) {
   const dispatch = useDispatch();
@@ -29,17 +30,20 @@ export default function Dog(props) {
   }
 
   return (
+    <div>
+  <NavBar />
     <div id= 'cardContainer'>
     <div className="info">
       <div className="card-title">{info?.name}</div>
       <div className="details">
-        <div>Temperament: {typeof  info?.temperament == 'string' ? info?.temperament : info?.temperaments.map(d => d.name)}</div>
-        <div>Height: {manageHeight(info)}cm</div>
-        <div>Weight: {manageWeight(info)}kg</div>
-        <div>Life span: {info?.life_span}</div>
+        <div>🦴Temperament: {typeof  info?.temperament == 'string' ? info?.temperament : info?.temperaments.map(d => d.name)}</div>
+        <div>🦴Height: {manageHeight(info)}cm</div>
+        <div>🦴Weight: {manageWeight(info)}kg</div>
+        <div>🦴Life span: {info?.life_span}</div>
         <img id='image' src={info?.image?.url || "https://www.creativefabrica.com/wp-content/uploads/2020/05/29/Dog-dxf-svg-png-eps-Cut-file-Graphics-4226994-1-1-580x386.jpg"} width="300" height="200" alt="" /> 
         {/*  La image rompe pero si la comento, trae  los datos, excepto los temperamentos */}
       </div>
+    </div>
     </div>
     </div>
   );

@@ -8,8 +8,6 @@ export default function LandingPage(){
         <div className= 'background'> 
             <div className= 'flex'> 
             <h1>Welcome</h1>
-            </div>
-            <div className= 'flex'>
               <button className= 'enter'> <Link to ='/home'>
                    <span id='text'>Let's find some dogs!</span>
                 </Link> </button>

@@ -4,6 +4,9 @@ import ReactPaginate from "react-paginate";
 import "./Cards.css";
 import Select from "react-select";
 import Card from "./Card.js";
+import NavBar from "./NavBar";
+import Loader from "react-loader-spinner";
+
 //import Checkbox from './Checkbox.js'
 
 export default function Cards({ dogs, temperaments, name }) {
@@ -20,53 +23,25 @@ export default function Cards({ dogs, temperaments, name }) {
     setFDogs([...dog]);
   }, [dog]);
 
+  const [selectedTemp, setSelectedTemp] = useState([]);
 
-  const [selectedTemp, setSelectedTemp] = useState([])
-
-  const handleChangeT =  (e) => {
+  const handleChangeT = (e) => {
     e.preventDefault();
     setSelectedTemp(e.target.value);
-    filter(e.target.value)
+    filter(e.target.value);
   };
 
-
-  function filter(w){
-    let filtered  = dog.filter((d) =>  {
-    if(d.temperaments){
-
-let names = d.temperaments.map(t => t.name)
-        return names.includes(w)
-    }
-    
-   else if(d.temperament !== undefined){
-    return d.temperament.includes(w)
-   }
-  })
+  function filter(w) {
+    let filtered = dog.filter((d) => {
+      if (d.temperaments) {
+        let names = d.temperaments.map((t) => t.name);
+        return names.includes(w);
+      } else if (d.temperament !== undefined) {
+        return d.temperament.includes(w);
+      }
+    });
     setFDogs([...filtered]);
   }
- /*  let filtered = []
-  let filteredMine  = dog.map((d) =>  {
-  if(d.temperaments){
-    //console.log(d.temperaments)
- // array.forEach((item) => console.log(item))
-  d.temperaments.forEach((t) => {
-    console.log('t', t.name)
-      if( t.name.includes(w)){
-        filteredMine.push(t.name)
-      }})
-  }})
-  let filteredApi  = dog.map((d) =>  {
-    if(d.temperament !== undefined)
-        if( d.name.includes(w)){
-          filteredApi.push(d.name)
-        }})
-    
-  
-
-  filtered = filteredMine.concat(filteredApi)
-  setFDogs([...filtered]); */
-
-
 
   /*    ------------------------------
             Breed filter */
@@ -81,14 +56,11 @@ let names = d.temperaments.map(t => t.name)
       let filtered = dog.filter((d) => {
         return d.name.toLowerCase().includes(w.toLowerCase());
       });
-      //console.log(filtered)
       setFDogs([...filtered]);
     } else {
       setFDogs([...dog]);
     }
   }
-
-  
 
   /*    ------------------------------
            my dogs vs api dogs*/
@@ -143,7 +115,6 @@ let names = d.temperaments.map(t => t.name)
         id={d.id}
       />
     ));
-  //console.log("string", dog, fDogs);
   const pageCount = Math.ceil(dog.length / dogsPerPage);
   const changePage = ({ selected }) => {
     setPageNumber(selected);
@@ -151,18 +122,21 @@ let names = d.temperaments.map(t => t.name)
 
   return (
     <div>
-       <div id="myVsApi">
-        
+   {/*      <Loader
+        type="Puff"
+        color="#00BFFF"
+        height={100}
+        width={100}
+        timeout={3000} //3 secs
+      /> */}
+      <div id="myVsApi">
         <button className="sorting" onClick={myDogs}>
-    
           Show my dogs
         </button>
         <button className="sorting" onClick={apiDogs}>
-      
           Show api dogs
         </button>
         <button className="sorting" onClick={showAll}>
-  
           Show all dogs
         </button>
       </div>
@@ -175,105 +149,81 @@ let names = d.temperaments.map(t => t.name)
           onChange={handleChange}
         />
         <i class="fa fa-search"></i>
-      </form> 
-
-
+      </form>
 
       <div className="all">
-        
-          <div className="temperamentsfil">
-            <select
-              className="temperamentsfil"
-              name="temperaments"
-              id="temperaments"
-              onChange={handleChangeT}
-            >
-              <option className="labels">Select temperaments</option>
-              {temperament.map((x) => (
-                <option value={x.name} key={x.id}>
-                  {x.name}
-                </option>
-              ))}
-            </select>
-           {/*  <ul>
-              <li id="title">Chosen temperament:</li>
-              {temperament.map((x) => (
-                <li key={x} value={selectedTemp}>
-                  {temperament[x].name}
-                </li>
-              ))}
-            </ul> */}
-           
-          </div>
+        <div className="temperamentsfil">
+          <select
+            className="temperamentsfil"
+            name="temperaments"
+            id="temperaments"
+            onChange={handleChangeT}
+          >
+            <option className="labels">Select temperaments</option>
+            {temperament.map((x) => (
+              <option value={x.name} key={x.id}>
+                {x.name}
+              </option>
+            ))}
+          </select>
+          
+        </div>
 
-          {/*  <div className="divtemperaments">
       
-             <select className="temperamentsfil" onChange={handleChange}>
-              <option>Select temperaments</option>
-              {temperament.map((x) => (
-                <option value={x.id} key={x.id}>
-                  {x.name}
-                </option>
-              ))}
-            </select>
-            
-          </div> */}
-        
 
-        {fDogs.length > 0 && <div className="cards">{displayDogs}</div>}
+        {fDogs.length > 0 && <div className="cards"timeout={5000}> {displayDogs}</div>}
 
         {/*  ------------------------------
             Sorting alphabetically  */}
         <div id="buttons">
-        <span id="sortby"> Sort by</span>
-       
-        <button
-          className="sorting"
-          onClick={() => {
-            fDogs.sort((a, b) => a.name.localeCompare(b.name));
-            setOrder([...fDogs]);
-          }}
-        >
-          A-Z
-        </button>
-        <button
-          className="sorting"
-          onClick={() => {
-            fDogs.sort((a, b) => a.name.localeCompare(b.name)).reverse();
-            setOrder([...fDogs]);
-          }}
-        >
-          Z-A
-        </button>
+          <span id="sortby"> Sort by</span>
 
-        {/*  ------------------------------
+          <button
+            className="sorting"
+            onClick={() => {
+              fDogs.sort((a, b) => a.name.localeCompare(b.name));
+              setOrder([...fDogs]);
+            }}
+          >
+            A-Z
+          </button>
+          <button
+            className="sorting"
+            onClick={() => {
+              fDogs.sort((a, b) => a.name.localeCompare(b.name)).reverse();
+              setOrder([...fDogs]);
+            }}
+          >
+            Z-A
+          </button>
+
+          {/*  ------------------------------
             Sorting by weight  */}
-        <button
-          className="sorting"
-          onClick={() => {
-            fDogs.sort(
-              (a, b) =>
-                parseFloat(manageWeight(b)) - parseFloat(manageWeight(a))
-            );
-            setOrder([...fDogs]);
-          }}
-        >
-          Descending weight
-        </button>
-        <button
-          className="sorting"
-          onClick={() => {
-            fDogs.sort(
-              (a, b) =>
-                parseFloat(manageWeight(a)) - parseFloat(manageWeight(b))
-            );
-            setOrder([...fDogs]);
-          }}
-        >
-          Ascending weight
-        </button>
+          <button
+            className="sorting"
+            onClick={() => {
+              fDogs.sort(
+                (a, b) =>
+                  parseFloat(manageWeight(b)) - parseFloat(manageWeight(a))
+              );
+              setOrder([...fDogs]);
+            }}
+          >
+            Descending weight
+          </button>
+          <button
+            className="sorting"
+            onClick={() => {
+              fDogs.sort(
+                (a, b) =>
+                  parseFloat(manageWeight(a)) - parseFloat(manageWeight(b))
+              );
+              setOrder([...fDogs]);
+            }}
+          >
+            Ascending weight
+          </button>
         </div>
-  
       </div>
 
       {/*  ------------------------------

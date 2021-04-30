@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import "./CreateDog.css";
+import NavBar from "./NavBar";
 
 export default function CreateDog(props) {
   const [input, setInput] = useState({
@@ -13,44 +14,69 @@ export default function CreateDog(props) {
     image:
       "https://www.creativefabrica.com/wp-content/uploads/2020/05/29/Dog-dxf-svg-png-eps-Cut-file-Graphics-4226994-1-1-580x386.jpg",
   });
-
+  const [errors, setErrors] = React.useState({});
   let temperament = useSelector((state) => state.temperaments);
+
+  /* const validate = (input) => {
+    let errors = {};
+    if (!input.name) {
+      errors.name = 'Name is required';
+    } else if (!/^[A-Za-z]+$/.test(input.name)) {
+      errors.name = 'Name is invalid';
+    }
+  
+    if (!input.weight) {
+      errors.weight = 'Weight is required';
+    } else if (!/^[0-9]*$/.test(input.weight)) {
+      errors.weight = 'Weight is invalid';
+    }
+    
+    if (!input.height) {
+      errors.height = 'Height is required';
+    } else if (!/^[0-9]*$/.test(input.height)) {
+      errors.height = 'Height is invalid';
+    }
+  
+    return errors;
+ 
+  };   */
 
   function axiosRegister(e) {
     e.preventDefault();
-    axios.post(`http://localhost:3001/dog`, input);
+    axios.post(`http://localhost:3001/dog`, input)
+    .then(res => {
+     if (res.status === 200){
+       alert("Dog succesfully created!")
+     }
+    }) 
    
   }
 
   function handleChange(e) {
     setInput({ ...input, [e.target.name]: e.target.value });
+   /*  setErrors( validate({ ...input, [e.target.name]: e.target.value }) );  */
   }
   function handleChangeTemp(e) {
     let num = [];
-    //console.log(e.target.value, input.temperaments)
     num = input.temperaments;
     num.push(e.target.value);
-    //input.temperaments= num
     setInput({ ...input, temperaments: num });
-    console.log("hola", input.temperaments);
   }
-  function onClose() {
+/*   function onClose(e) {
     let newtemps = [];
     let removed = [];
+    console.log(input.temperaments)
     newtemps = input.temperaments;
-    //console.log('newtemps', newtemps)
-    for (let i = 0; i < input.temperaments.length; i++) {
-      //console.log('hola', temperament.length)
       removed = newtemps.filter((c) => {
-        console.log("c", c);
-        console.log("input.temperaments", input.temperaments[i], i);
-        return c !== input.temperaments[i];
+        console.log(c.id)
+        return c !== e.target.value
       });
-    }
     setInput({ ...input, temperaments: removed });
-  }
+  }  */
 
   return (
+    <div>
+        <NavBar />
     <form className="allLabels" onSubmit={axiosRegister}>
       <label className="labels" for="name">
         Name
@@ -59,9 +85,13 @@ export default function CreateDog(props) {
         className="allInputs"
         type="text"
         name="name"
+        required
         value={input.name}
         onChange={handleChange}
       />
+        {errors.name && (
+          <p className="danger">{errors.name}</p>
+        )}
 
       <label className="labels" for="height">
         Height
@@ -69,6 +99,7 @@ export default function CreateDog(props) {
       <input
         className="allInputs"
         type="number"
+        required
         id="height"
         name="height"
         min="1"
@@ -76,12 +107,17 @@ export default function CreateDog(props) {
         value={input.height}
         onChange={handleChange}
       />
+
+{errors.height && (
+          <p className="danger">{errors.height}</p>
+        )}
       <label className="labels" for="weight">
         Weight
       </label>
       <input
         className="allInputs"
         type="number"
+        required
         id="weight"
         name="weight"
         min="1"
@@ -89,6 +125,9 @@ export default function CreateDog(props) {
         value={input.weight}
         onChange={handleChange}
       />
+        {errors.weight && (
+          <p className="danger">{errors.weight}</p>
+        )}
       <label className="labels" for="life_span">
         Life_span
       </label>
@@ -111,7 +150,6 @@ export default function CreateDog(props) {
           className="addtemperaments"
           name="temperaments"
           id="temperaments"
-          multiple
           onChange={handleChangeTemp}
         >
           <option className="labels">Select temperaments</option>
@@ -125,15 +163,15 @@ export default function CreateDog(props) {
           <li id="title">Chosen temperaments:</li>
           {input.temperaments.map((x) => (
             <li key={x} value={x.id}>
-              {temperament[x - 1].name} <button onClick={onClose}>X</button>
+              {temperament[x - 1].name}  {/* <button onClick={onClose}>X</button>  */}
             </li>
           ))}
         </ul>
       </div>
 
-      <button type="submit">Add Dog!</button>
+      <button className= 'addButton' type="submit">Add Dog!</button>
     </form >
+    </div>
   );
 }
 
-//ONCHANGE METER EN EL ARRAY DE TEMPERAMENTOS DEL COSTADO

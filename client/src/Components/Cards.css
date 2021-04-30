@@ -155,9 +155,42 @@ body{
     padding: 5px;
     border-color: black;
     width: 370px;
-    margin-right: 50px;
+    margin-right: 30px;
 }
 .nBottons{
     display: flex;
     flex-direction: row;
+}
+
+.sorting:hover {background-color: blanchedalmond;}
+
+.sorting:active {
+    background-color: blanchedalmond;
+      box-shadow: 0 3px rgb(180, 178, 178);
+  transform: translateY(4px);
+}
+
+.paginationButtons{
+    width:80%;
+    height: 40px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 6%;
+}
+.paginationButtons a {
+    padding: 10px;
+    margin: 8px;
+    border-radius: 5px;
+    border: 1px solid  rgb(229, 143, 157);
+    font-family: 'Montserrat', sans-serif;
+    color: grey;
+    cursor: pointer
+}
+.paginationButtons a:hover{
+    background-color: blanchedalmond;
+}
+.paginationActive a{
+    background-color: blanchedalmond;
 }
