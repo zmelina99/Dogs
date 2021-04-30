@@ -22,7 +22,7 @@ async function addDog(req, res, next){
         console.log(createdDog, temperaments)
         await createdDog.addTemperament(temperaments)
       /*   const prueba = dog_temperament.findAll() */
-        return res.json(createdDog)
+        return res.status(200).json(createdDog)
     }
     catch(error){
         next(error)
