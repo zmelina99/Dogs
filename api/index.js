@@ -42,7 +42,6 @@ conn.sync({ force: true }).then((next) => {
         }
         }
       }) 
-      console.log(set)
       const myArr = Array.from(set)
       for (let i=0; i < myArr.length;i++){
       var temperament =  Temperament.create({

@@ -8,10 +8,8 @@ const operatorsAliases = {
   $not: Op.not
 }
 
-//Ok, trae  todos los perros  
-//CREAR PERRO EN MI BASE DE DATOS  
 function getDogs(req, res, next){
-    if(Object.keys(req.query).length === 0){ //BUSCAR EN CP3
+    if(Object.keys(req.query).length === 0){ 
     const dogApi = axios.get(BASE_URL);
     const myDogs = Dog.findAll({include: [Temperament]});
     Promise.all([dogApi, myDogs])
@@ -68,15 +66,3 @@ module.exports = {
     getDogs,
     getDogsParams
 }
-/* //paginacion sequelize Limits and Pagination
-The limit and offset options allow you to work with limiting / pagination:
-
-// Fetch 10 instances/rows
-Project.findAll({ limit: 10 });
-
-// Skip 8 instances/rows
-Project.findAll({ offset: 8 });
-
-// Skip 5 instances and fetch the 5 after that
-Project.findAll({ offset: 5, limit: 5 });
-Usually these are used alongside the order option. */

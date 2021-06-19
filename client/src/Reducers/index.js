@@ -1,36 +1,35 @@
-import { GET_DOGS, GET_DOG_DETAIL, ADD_DOG, GET_TEMPERAMENTS } from '../Actions/index.js';
+import {
+  GET_DOGS,
+  GET_DOG_DETAIL,
+  GET_TEMPERAMENTS,
+} from "../Actions/index.js";
 const initialState = {
-    dogs: [],
-    dogDetail: [], 
-    temperaments: []
-  };
+  dogs: [],
+  dogDetail: [],
+  temperaments: [],
+};
 
-  function rootReducer(state = initialState, action) {
-   
-    if (action.type === GET_DOGS) {
-        return {
-          ...state,
-          dogs: action.payload
-        };
-    }
-    if (action.type === GET_DOG_DETAIL ) {
-      return{
-        ...state,
-        dogDetail: action.payload
-      }
-    }
-    if (action.type === GET_TEMPERAMENTS) {
-      return {
-        ...state,
-        temperaments: action.payload
-      };
+function rootReducer(state = initialState, action) {
+  if (action.type === GET_DOGS) {
+    return {
+      ...state,
+      dogs: action.payload,
+    };
   }
-    
-    if(action.type === ADD_DOG) {
-           return [...state, action.payload]
-    }
-    
-    return state;
+  if (action.type === GET_DOG_DETAIL) {
+    return {
+      ...state,
+      dogDetail: action.payload,
+    };
   }
-  
-  export default rootReducer;
+  if (action.type === GET_TEMPERAMENTS) {
+    return {
+      ...state,
+      temperaments: action.payload,
+    };
+  }
+
+  return state;
+}
+
+export default rootReducer;

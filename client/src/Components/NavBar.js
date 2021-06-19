@@ -13,6 +13,9 @@ export default function NavBar() {
           <NavLink className="list-item" to="/createDog">
             Create breed
           </NavLink>
+          <NavLink className="list-item" to="/about">
+           About
+          </NavLink>
         </div>
       </nav>
     </header>

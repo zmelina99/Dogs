@@ -7,7 +7,6 @@ import Card from "./Card.js";
 import NavBar from "./NavBar";
 import Loader from "react-loader-spinner";
 
-//import Checkbox from './Checkbox.js'
 
 export default function Cards({ dogs, temperaments, name }) {
   let dog = useSelector((state) => state.dogs);
@@ -19,6 +18,7 @@ export default function Cards({ dogs, temperaments, name }) {
   const dogsPerPage = 8;
   const pagesVisited = pageNumber * dogsPerPage;
   const [fDogs, setFDogs] = useState([]);
+ 
   useEffect(() => {
     setFDogs([...dog]);
   }, [dog]);
@@ -82,7 +82,7 @@ export default function Cards({ dogs, temperaments, name }) {
   }
 
   /*    ------------------------------
-           .metric control */
+          metric control */
 
   function manageWeight(a, b) {
     if (b) {
@@ -121,14 +121,8 @@ export default function Cards({ dogs, temperaments, name }) {
   };
 
   return (
-    <div>
-   {/*      <Loader
-        type="Puff"
-        color="#00BFFF"
-        height={100}
-        width={100}
-        timeout={3000} //3 secs
-      /> */}
+    <div className= 'allDivs'>
+  
       <div id="myVsApi">
         <button className="sorting" onClick={myDogs}>
           Show my dogs
@@ -152,7 +146,7 @@ export default function Cards({ dogs, temperaments, name }) {
       </form>
 
       <div className="all">
-        <div className="temperamentsfil">
+        <div>
           <select
             className="temperamentsfil"
             name="temperaments"
@@ -243,3 +237,5 @@ export default function Cards({ dogs, temperaments, name }) {
     </div>
   );
 }
+
+// window.scrollTo(0, 0)

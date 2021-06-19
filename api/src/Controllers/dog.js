@@ -19,9 +19,7 @@ async function addDog(req, res, next){
             image: image
     
         })
-        console.log(createdDog, temperaments)
         await createdDog.addTemperament(temperaments)
-      /*   const prueba = dog_temperament.findAll() */
         return res.status(200).json(createdDog)
     }
     catch(error){

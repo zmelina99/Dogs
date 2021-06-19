@@ -12,10 +12,11 @@ export default function CreateDog(props) {
     life_span: "",
     temperaments: [],
     image:
-      "https://www.creativefabrica.com/wp-content/uploads/2020/05/29/Dog-dxf-svg-png-eps-Cut-file-Graphics-4226994-1-1-580x386.jpg",
+      "https://placedog.net/400",
   });
-  const [errors, setErrors] = React.useState({});
   let temperament = useSelector((state) => state.temperaments);
+  //const [errors, setErrors] = React.useState({});
+ 
 
   /* const validate = (input) => {
     let errors = {};
@@ -75,7 +76,7 @@ export default function CreateDog(props) {
   }  */
 
   return (
-    <div>
+    <div className= 'allCreate'>
         <NavBar />
     <form className="allLabels" onSubmit={axiosRegister}>
       <label className="labels" for="name">
@@ -89,9 +90,9 @@ export default function CreateDog(props) {
         value={input.name}
         onChange={handleChange}
       />
-        {errors.name && (
+      {/*   {errors.name && (
           <p className="danger">{errors.name}</p>
-        )}
+        )} */}
 
       <label className="labels" for="height">
         Height
@@ -108,9 +109,9 @@ export default function CreateDog(props) {
         onChange={handleChange}
       />
 
-{errors.height && (
+{/* {errors.height && (
           <p className="danger">{errors.height}</p>
-        )}
+        )} */}
       <label className="labels" for="weight">
         Weight
       </label>
@@ -125,9 +126,9 @@ export default function CreateDog(props) {
         value={input.weight}
         onChange={handleChange}
       />
-        {errors.weight && (
+      {/*   {errors.weight && (
           <p className="danger">{errors.weight}</p>
-        )}
+        )} */}
       <label className="labels" for="life_span">
         Life_span
       </label>
@@ -162,7 +163,7 @@ export default function CreateDog(props) {
         <ul>
           <li id="title">Chosen temperaments:</li>
           {input.temperaments.map((x) => (
-            <li key={x} value={x.id}>
+            <li className = 'chosen' key={x} value={x.id}>
               {temperament[x - 1].name}  {/* <button onClick={onClose}>X</button>  */}
             </li>
           ))}

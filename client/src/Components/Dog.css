@@ -1,8 +1,9 @@
  #cardContainer{
    display: flex;
    justify-content: center;
-margin-top: 80px;
+   margin-top: 80px;
  }
+
  .info {
     margin: 20px;
     width: 500px;
@@ -12,9 +13,6 @@ margin-top: 80px;
     border-color:  rgb(229, 143, 157);
     
   } 
-  
-  
-
 
   .card-title {
     margin-top: 10px;
