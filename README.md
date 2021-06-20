@@ -67,7 +67,7 @@ __IMPORTANT__: It  is not allowed to use external libraries for the CSS, you are
 You must develop an App using React/Redux that contains the following screens/routes:
 
 __Initial Page__: You must build a landing page with:
-- [ ] En image that represents the project
+- [ ] An image that represents the project
 - [ ] Button to go to Home (`Main route`)
 
 __Main  route__: Must contain:
@@ -99,7 +99,7 @@ __Dog creation route__: must contain:
 - [ ]Option to select one or more temperaments 
 - [ ] Botón to  create a new dog breed
 
-#### Data-base 
+#### DataBase 
 
 The model must have the following entities (The ones with a * ae mandatory):
 
