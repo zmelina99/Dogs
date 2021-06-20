@@ -2,11 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import ReactPaginate from "react-paginate";
 import "./Cards.css";
-import Select from "react-select";
 import Card from "./Card.js";
 import NavBar from "./NavBar";
-import Loader from "react-loader-spinner";
-
 
 export default function Cards({ dogs, temperaments, name }) {
   let dog = useSelector((state) => state.dogs);
@@ -18,14 +15,13 @@ export default function Cards({ dogs, temperaments, name }) {
   const dogsPerPage = 8;
   const pagesVisited = pageNumber * dogsPerPage;
   const [fDogs, setFDogs] = useState([]);
- 
+  const [selectedTemp, setSelectedTemp] = useState([]);
+
   useEffect(() => {
     setFDogs([...dog]);
   }, [dog]);
 
-  const [selectedTemp, setSelectedTemp] = useState([]);
-
-  const handleChangeT = (e) => {
+  const handleChangeTemp = (e) => {
     e.preventDefault();
     setSelectedTemp(e.target.value);
     filter(e.target.value);
@@ -121,8 +117,7 @@ export default function Cards({ dogs, temperaments, name }) {
   };
 
   return (
-    <div className= 'allDivs'>
-  
+    <div className="allDivs">
       <div id="myVsApi">
         <button className="sorting" onClick={myDogs}>
           Show my dogs
@@ -151,7 +146,7 @@ export default function Cards({ dogs, temperaments, name }) {
             className="temperamentsfil"
             name="temperaments"
             id="temperaments"
-            onChange={handleChangeT}
+            onChange={handleChangeTemp}
           >
             <option className="labels">Select temperaments</option>
             {temperament.map((x) => (
@@ -160,12 +155,14 @@ export default function Cards({ dogs, temperaments, name }) {
               </option>
             ))}
           </select>
-          
         </div>
 
-      
-
-        {fDogs.length > 0 && <div className="cards"timeout={5000}> {displayDogs}</div>}
+        {fDogs.length > 0 && (
+          <div className="cards" timeout={5000}>
+            {" "}
+            {displayDogs}
+          </div>
+        )}
 
         {/*  ------------------------------
             Sorting alphabetically  */}

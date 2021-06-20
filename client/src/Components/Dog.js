@@ -1,5 +1,4 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getDogDetail } from "../Actions";
 import { useSelector } from "react-redux";
@@ -30,19 +29,30 @@ export default function Dog(props) {
 
   return (
     <div>
-  <NavBar />
-    <div id= 'cardContainer'>
-    <div className="info">
-      <div className="card-title">{info?.name}</div>
-      <div className="details">
-        <div>🦴Temperament: {typeof  info?.temperament == 'string' ? info?.temperament : info?.temperaments.map((d) => d.name ).join(', ')}</div>
-        <div>🦴Height: {manageHeight(info)}cm</div>
-        <div>🦴Weight: {manageWeight(info)}kg</div>
-        <div>🦴Life span: {info?.life_span}</div>
-        <img id='image' src={info?.image?.url || "https://placedog.net/400"} width="300" height="200" alt="" /> 
+      <NavBar />
+      <div id="cardContainer">
+        <div className="info">
+          <div className="card-title">{info?.name}</div>
+          <div className="details">
+            <div>
+              🦴Temperament:{" "}
+              {typeof info?.temperament == "string"
+                ? info?.temperament
+                : info?.temperaments.map((d) => d.name).join(", ")}
+            </div>
+            <div>🦴Height: {manageHeight(info)}cm</div>
+            <div>🦴Weight: {manageWeight(info)}kg</div>
+            <div>🦴Life span: {info?.life_span}</div>
+            <img
+              id="image"
+              src={info?.image?.url || "https://placedog.net/400"}
+              width="300"
+              height="200"
+              alt=""
+            />
+          </div>
+        </div>
       </div>
-    </div>
-    </div>
     </div>
   );
 }
