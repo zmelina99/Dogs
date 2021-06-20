@@ -8,7 +8,7 @@
   <img height="200" src="./dog.png" />
 </p>
 
-## Objetivos del Proyecto
+## OObjectives
 
 - App built using React, Redux, Node y Sequelize.
 - Connect all the contents learnt in the bootcamp
@@ -18,7 +18,7 @@
 
 
 
-## Comenzando
+## Getting started
 
 
 
@@ -31,7 +31,7 @@ The boilerplate has two folders: `api` y `client`. The folder named API contains
 
 
 
-## Enunciado
+## What to do:
 
 The main idea is to create an App where the user can browse different dog breeds and their relevant inforation using an external API.
  [the dog api](https://thedogapi.com/) and with this API, being able to: 
@@ -54,7 +54,7 @@ To filter and sort, you have to build your own routes, it is not allowed to use 
 
 The following are the minimal requiements to pass the test: 
 
-__IMPORTANTE__: It  is not allowed to use external libraries for the CSS, you are only allowed to use: CSS, CSS-modules, styled-components
+__IMPORTANT__: It  is not allowed to use external libraries for the CSS, you are only allowed to use: CSS, CSS-modules, styled-components
 
 #### Necessary technologies:
 - [ ] React
